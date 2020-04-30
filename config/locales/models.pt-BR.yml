@@ -1,14 +1,14 @@
 pt-BR:
   activerecord:
     models:
-      profile:
-        one: "Perfil"
-        other: "Perfis"
+      user:
+        one: "Usuário"
+        other: "Usuários"
       admin:
         one: "Administrador"
         other: "Administradores"
     attributes:
-      profile:
+      user:
         email: "Email"
         password: "Senha"
         password_confirmation: "Confirmação de Senha"
