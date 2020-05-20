@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-//= require jquery.min.js
-//= require bootstrap.min.js
+//= require jquery2.min.js
+//= require bootstrap3.min.js
 //= require fastclick/lib/fastclick.js
 //= require nprogress/nprogress.js
 //= require malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js
