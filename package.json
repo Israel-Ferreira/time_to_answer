@@ -1,5 +1,12 @@
 {
   "name": "time_to_answer",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "fastclick": "^1.0.6",
+    "gentelella": "^1.4.0",
+    "malihu-custom-scrollbar-plugin": "^3.1.5",
+    "nprogress": "^0.2.0",
+    "popper.js": "^1.16.1",
+    "startbootstrap-sb-admin-2": "^4.0.7"
+  }
 }
