@@ -11,6 +11,7 @@ namespace :dev do
         { command: 'db:create', start_msg: 'Criando o banco de dados', end_msg: 'Banco de dados criado com sucesso' },
         { command: 'db:migrate', start_msg: 'Migrando o BD', end_msg: 'Migração realizada com sucesso' },
         { command: 'dev:add_default_admin', start_msg: 'Criando o Admin ...', end_msg: 'Admin criado com sucesso' },
+        { command: 'dev:add_extra_admins', start_msg: 'Adicionando Administradores extras ...', end_msg: 'Admins extras adicionados com sucesso' },
         { command: 'dev:add_default_user', start_msg: 'Criando o Usuário padrão ...', end_msg: 'Usuário criado com sucesso' }
       ]
 
@@ -22,6 +23,7 @@ namespace :dev do
     end
   end
 
+  desc "Adiciona o administrador padrão"
   task add_default_admin: :environment do
     Admin.create!(
       email: 'admin@admin.com.br',
@@ -30,6 +32,18 @@ namespace :dev do
     )
   end
 
+  desc "Adiciona administradores extras"
+  task add_extra_admins: :environment do
+    10.times do 
+      Admin.create!(
+        email: Faker::Internet.email,
+        password: DEFAULT_PASSWORD,
+        password_confirmation: DEFAULT_PASSWORD
+      )
+    end
+  end
+
+  desc "Adiciona o usuário padrão"
   task add_default_user: :environment do
     User.create!(
       email: 'user@user.com.br',
