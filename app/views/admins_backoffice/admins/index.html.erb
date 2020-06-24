@@ -2,3 +2,7 @@
 
 <h1 class="page-header">Listando Administradores</h1>
 <%= render "table"%>
+
+<div class="text-center">
+  <%=  paginate @admins %>
+</div>

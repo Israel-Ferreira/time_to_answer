@@ -5,7 +5,7 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
   before_action :password_verify, only: %i[update]
 
   def index
-    @admins = Admin.all
+    @admins = Admin.all.page(params[:page])
   end
 
   def new
