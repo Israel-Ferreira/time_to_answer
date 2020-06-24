@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AdminsBackoffice::AdminsController < AdminsBackofficeController
-  before_action :set_admin, only: %i[edit update]
+  before_action :set_admin, only: %i[edit update destroy]
   before_action :password_verify, only: %i[update]
 
   def index
@@ -29,6 +29,14 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
       back_to_admins_list("Admin #{@admin.email} atualizado com sucesso")
     else
       render :edit
+    end
+  end
+
+  def destroy 
+    if @admin.destroy
+      back_to_admins_list("Admin #{@admin.email} excluido com sucesso")
+    else
+      render :index
     end
   end
 
