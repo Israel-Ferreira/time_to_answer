@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 namespace :dev do
-  DEFAULT_PASSWORD = 123456
+  DEFAULT_PASSWORD = 123_456
+  DEFAULT_FILES_PATH = File.join(Rails.root, 'lib', 'tmp')
 
   desc 'TODO'
   task setup: :environment do
@@ -12,7 +13,8 @@ namespace :dev do
         { command: 'db:migrate', start_msg: 'Migrando o BD', end_msg: 'Migração realizada com sucesso' },
         { command: 'dev:add_default_admin', start_msg: 'Criando o Admin ...', end_msg: 'Admin criado com sucesso' },
         { command: 'dev:add_extra_admins', start_msg: 'Adicionando Administradores extras ...', end_msg: 'Admins extras adicionados com sucesso' },
-        { command: 'dev:add_default_user', start_msg: 'Criando o Usuário padrão ...', end_msg: 'Usuário criado com sucesso' }
+        { command: 'dev:add_default_user', start_msg: 'Criando o Usuário padrão ...', end_msg: 'Usuário criado com sucesso' },
+        { command: 'dev:add_subjects', start_msg: 'Cadastrando os Assuntos Padrões...', end_msg: 'Assuntos Padrões cadastrados com sucesso!' }
       ]
 
       tasks.each do |task|
@@ -23,7 +25,7 @@ namespace :dev do
     end
   end
 
-  desc "Adiciona o administrador padrão"
+  desc 'Adiciona o administrador padrão'
   task add_default_admin: :environment do
     Admin.create!(
       email: 'admin@admin.com.br',
@@ -32,9 +34,9 @@ namespace :dev do
     )
   end
 
-  desc "Adiciona administradores extras"
+  desc 'Adiciona administradores extras'
   task add_extra_admins: :environment do
-    10.times do 
+    10.times do
       Admin.create!(
         email: Faker::Internet.email,
         password: DEFAULT_PASSWORD,
@@ -43,13 +45,23 @@ namespace :dev do
     end
   end
 
-  desc "Adiciona o usuário padrão"
+  desc 'Adiciona o usuário padrão'
   task add_default_user: :environment do
     User.create!(
       email: 'user@user.com.br',
       password: DEFAULT_PASSWORD,
       password_confirmation: DEFAULT_PASSWORD
     )
+  end
+
+  desc 'Adiciona os assuntos padrões '
+  task add_subjects: :environment do
+    file_name = 'subjects.txt'
+    file = File.join(DEFAULT_FILES_PATH, file_name)
+
+    File.open(file, 'r').each do |line|
+      Subject.create!(description: line.strip)
+    end
   end
 
   private
