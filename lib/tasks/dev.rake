@@ -14,7 +14,8 @@ namespace :dev do
         { command: 'dev:add_default_admin', start_msg: 'Criando o Admin ...', end_msg: 'Admin criado com sucesso' },
         { command: 'dev:add_extra_admins', start_msg: 'Adicionando Administradores extras ...', end_msg: 'Admins extras adicionados com sucesso' },
         { command: 'dev:add_default_user', start_msg: 'Criando o Usuário padrão ...', end_msg: 'Usuário criado com sucesso' },
-        { command: 'dev:add_subjects', start_msg: 'Cadastrando os Assuntos Padrões...', end_msg: 'Assuntos Padrões cadastrados com sucesso!' }
+        { command: 'dev:add_subjects', start_msg: 'Cadastrando os Assuntos Padrões...', end_msg: 'Assuntos Padrões cadastrados com sucesso!' },
+        { command: 'dev:add_questions_and_answers', start_msg: 'Cadastrando Questões...', end_msg: 'Questões cadastrados com sucesso!' }
       ]
 
       tasks.each do |task|
@@ -61,6 +62,18 @@ namespace :dev do
 
     File.open(file, 'r').each do |line|
       Subject.create!(description: line.strip)
+    end
+  end
+
+  desc 'Adiciona Questões e Respostas'
+  task add_questions_and_answers: :environment do
+    Subject.all.each do |subject|
+      rand(5..10).times do
+        Question.create!(
+          description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
+          subject: subject
+        )
+      end
     end
   end
 
