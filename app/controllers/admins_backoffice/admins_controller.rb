@@ -16,7 +16,7 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
     @admin = Admin.new(admin_params)
 
     if @admin.save
-      back_to_admins_list('Admin Criado com sucesso') 
+      back_to_admins_list('Admin Criado com sucesso')
     else
       render :new
     end
@@ -32,7 +32,7 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
     end
   end
 
-  def destroy 
+  def destroy
     if @admin.destroy
       back_to_admins_list("Admin #{@admin.email} excluido com sucesso")
     else
@@ -57,6 +57,6 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
   end
 
   def back_to_admins_list(notice_msg)
-    redirect_to admins_backoffice_admins_path, notice: notice_msg
+    back_resource_index(admins_backoffice_admins_path, notice_msg)
   end
 end

@@ -7,6 +7,9 @@ pt-BR:
       admin:
         one: "Administrador"
         other: "Administradores"
+      subject:
+        one: "Assunto"
+        other: "Assuntos"
     attributes:
       user:
         email: "Email"
@@ -20,3 +23,6 @@ pt-BR:
         password_confirmation: "Confirmação de Senha"
         created_at: "Criado em"
         updated_at: "Atualizado em"
+      subject:
+        description: "Descrição"
+
