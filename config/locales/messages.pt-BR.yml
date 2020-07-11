@@ -1,3 +1,4 @@
 pt-BR:
   messages:
     listing: "Listando %{model_name}"
+    confirm_with: "Você Deseja realmente excluir %{item}?"
