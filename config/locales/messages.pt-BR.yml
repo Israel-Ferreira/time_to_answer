@@ -2,3 +2,4 @@ pt-BR:
   messages:
     listing: "Listando %{model_name}"
     confirm_with: "Você Deseja realmente excluir %{item}?"
+    form_header: "%{action_message} %{model_name}"

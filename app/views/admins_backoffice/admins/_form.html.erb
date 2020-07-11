@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header"><%= "#{action_message} Administrador" %> </h1>
+    <h1 class="page-header">
+      <%= t('messages.form_header', action_name: action_message, model_name: translate_model(@admin) ) %> 
+    </h1>
   </div>
 </div>
 
