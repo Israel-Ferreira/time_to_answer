@@ -37,6 +37,9 @@ pt-BR:
         description: "Descrição"
         subject: "Assunto"
         <<: *common
+      answer: 
+        description: "Descrição"
+        <<: *common
         
 
 

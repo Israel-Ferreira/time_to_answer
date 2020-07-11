@@ -1,25 +1,15 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-
-  def logout_user
-    logout_builder('Fazer logout [Usuário]', destroy_user_session_path)
-  end
-
-  private
-
-  def logout_with_icon(text,route)
-    link_to route, method: :delete do
-      yield
-      text
-    end
-  end
-
-  def logout_builder(link_text, route)
-    if block_given?
-      logout_with_icon(link_text,route) { block.call }
+  def translate_attribute(object = nil, attribute = nil)
+    if object && attribute
+      object.model.human_attribute_name(attribute)
     else
-      link_to link_text, route, method: :delete
+      'Informe os parâmetros corretamente! '
     end
+  end
+
+  def translate_model(object, count = 1)
+    object.model_name.human(count: count)
   end
 end

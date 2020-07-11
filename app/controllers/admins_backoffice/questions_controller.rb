@@ -4,7 +4,9 @@ class AdminsBackoffice::QuestionsController < AdminsBackofficeController
   before_action :get_subjects, only: %i[new edit]
 
   def index
-    @questions =  Question.all.page(params[:page])
+    @questions =  Question.includes(:subject)
+                          .order(:description)
+                          .page(params[:page])
   end
   
   def new
@@ -25,7 +27,7 @@ class AdminsBackoffice::QuestionsController < AdminsBackofficeController
   
   def update
     if @question.update(question_params)
-      redirect_to admins_backoffice_question_path, notice: "Questão Atualizada com Sucesso"
+      redirect_to admins_backoffice_questions_path, notice: "Questão Atualizada com Sucesso"
     else
       render :edit
     end

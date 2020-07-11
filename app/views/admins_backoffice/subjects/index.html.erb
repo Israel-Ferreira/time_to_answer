@@ -1,4 +1,6 @@
-<h1 class="page-header">Listando Assuntos/Áreas</h1>
+<h1 class="page-header">
+  <%= t('messages.listing', model_name: translate_model(@subjects, @subjects.size)) %> 
+</h1>
 <%= render "table"%>
 
 <div class="text-center">
