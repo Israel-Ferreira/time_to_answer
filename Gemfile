@@ -67,6 +67,7 @@ end
 gem 'devise'
 gem 'rails-i18n', '~> 5.1'
 gem 'tty-spinner'
+gem "cocoon"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 

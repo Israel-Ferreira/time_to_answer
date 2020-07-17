@@ -15,7 +15,7 @@ namespace :dev do
         { command: 'dev:add_extra_admins', start_msg: 'Adicionando Administradores extras ...', end_msg: 'Admins extras adicionados com sucesso' },
         { command: 'dev:add_default_user', start_msg: 'Criando o Usuário padrão ...', end_msg: 'Usuário criado com sucesso' },
         { command: 'dev:add_subjects', start_msg: 'Cadastrando os Assuntos Padrões...', end_msg: 'Assuntos Padrões cadastrados com sucesso!' },
-        { command: 'dev:add_questions_and_answers', start_msg: 'Cadastrando Questões...', end_msg: 'Questões cadastrados com sucesso!' }
+        { command: 'dev:add_questions_and_answers', start_msg: 'Cadastrando Questões e Respostas...', end_msg: 'Questões e Respostas cadastradas com sucesso!' }
       ]
 
       tasks.each do |task|
@@ -69,10 +69,12 @@ namespace :dev do
   task add_questions_and_answers: :environment do
     Subject.all.each do |subject|
       rand(5..10).times do
-        Question.create!(
-          description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
-          subject: subject
-        )
+        params = create_question_params(subject)
+
+        add_answers(params[:question][:answers_attributes])
+        elect_true_answer(params[:question][:answers_attributes])
+
+        Question.create!(params[:question])
       end
     end
   end
@@ -88,5 +90,31 @@ namespace :dev do
     else
       spinner.error('(ERRO: Não foi passado o bloco)')
     end
+  end
+
+  def create_question_params(subject)
+    {
+      question: {
+        description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
+        subject: subject,
+        answers_attributes: []
+      }
+    }
+  end
+
+
+  def create_answer_params
+    {description: Faker::Lorem.sentence, correct: false}
+  end
+
+  def add_answers(arr_answers)
+    rand(2..5).times do
+      arr_answers.push(create_answer_params)
+    end
+  end
+
+  def elect_true_answer(arr_answers)
+    selected_index = rand(arr_answers.size)
+    arr_answers[selected_index] = { description: Faker::Lorem.sentence, correct: true }
   end
 end
