@@ -54,6 +54,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-rails'
+  gem 'rails_db', '2.3.0'
 end
 
 group :test do
