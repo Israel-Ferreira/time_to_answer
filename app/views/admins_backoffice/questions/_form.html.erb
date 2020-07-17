@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
     <h1 class="page-header">
-      <%= t('messages.form_header', action_name: action_message, model_name: translate_model(@question) ) %> 
+      <%= t('messages.form_header', action_message: action_message, model_name: translate_model(@question) ) %> 
     </h1>
   </div>
 </div>
@@ -22,6 +22,14 @@
               <div class="form-group">
                 <%= f.label :subject %>
                 <%= f.collection_select(:subject_id,@subjects,:id,:description, {},{class: "form-control"}) %>
+              </div>
+
+              <div id="answers">
+                <%= f.fields_for :answers do |answer| %>
+                  <%= render partial: "answer_fields", locals: { f: answer } %>
+                <% end %>
+
+                <%= link_to_add_association('[Adicionar Resposta]', f, :answers) %>
               </div>
 
               <%= f.submit "Salvar", class: 'btn btn-default' %>
