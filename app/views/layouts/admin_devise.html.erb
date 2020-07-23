@@ -5,12 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag    'application'%>
+    <%= stylesheet_link_tag    'admin_devise' %>
   </head>
 
   <body>
-    <h1>Layout Admin Devise!!</h1>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
+  <footer>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'admin_devise' %>
+
+
+    <% if flash %>
+      <% flash.each do |key, value| %>
+        <%= javascript_tag do %>
+          $.bootstrapGrowl('<%= value %>', {
+            type: 'danger', // (null, 'info', 'danger', 'success')
+            align: 'right', // ('left', 'right', or 'center')
+            allow_dismiss: true, // If true then will display a cross to close the popup.
+            stackup_spacing: 10 // spacing between consecutively stacked growls.
+          });
+        <% end %>
+      <% end %>
+    <% end %>
+  </footer>
 </html>

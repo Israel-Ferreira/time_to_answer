@@ -3,6 +3,14 @@
 class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
+  def after_sign_in_path_for(resource)
+    if resource_class == Admin
+      admins_backoffice_welcome_index_path
+    else
+      users_backoffice_welcome_index_path
+    end
+  end
+
   private
 
   def layout_by_resource
@@ -13,4 +21,6 @@ class ApplicationController < ActionController::Base
       'application'
     end
   end
+
+
 end
