@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     if resource_class == Admin
       admins_backoffice_welcome_index_path
     else
@@ -14,13 +14,6 @@ class ApplicationController < ActionController::Base
   private
 
   def layout_by_resource
-    puts resource_class
-    if devise_controller? && resource_class == Admin
-      'admin_devise'
-    else
-      'application'
-    end
+    devise_controller? ? "#{resource_class.to_s.downcase}_devise" : 'application'
   end
-
-
 end

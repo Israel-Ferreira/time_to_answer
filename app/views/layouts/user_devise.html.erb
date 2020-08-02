@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>TimeToAnswer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application'%>
-    <%= stylesheet_link_tag    'admin_devise' %>
+    <%= stylesheet_link_tag    'application' %>
+    <%= stylesheet_link_tag    'user_devise' %>
   </head>
-
-  <body>
-    <div class="container">
-      <%= yield %>
-    </div>
-  </body>
-  <footer>
+  <body class="login">
+    <%= yield %>
     <%= javascript_include_tag 'application' %>
-    <%= javascript_include_tag 'admin_devise' %>
-
+    <%= javascript_include_tag 'user_devise' %>
 
     <% if flash %>
       <% flash.each do |key, value| %>
@@ -31,5 +27,5 @@
         <% end %>
       <% end %>
     <% end %>
-  </footer>
+  </body>
 </html>
