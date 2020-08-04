@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     if resource_class == Admin
       admins_backoffice_welcome_index_path
     else
-      users_backoffice_welcome_index_path
+     root_path
     end
   end
 
