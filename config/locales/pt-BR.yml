@@ -1,27 +1,4 @@
 pt-BR:
-  active_record:
-    models:
-      profile:
-        one: "Perfil"
-        other: "Perfis"
-      admin:
-        one: "Administrador"
-        other: "Administradores"
-      subject:
-        one: "Assunto"
-        other: "Assuntos"
-    attributes:
-      profile:
-        email: "Email"
-        password: "Senha"
-        password_confirmation: "Confirmação de Senha"
-        created_at: "Criado em"
-        updated_at: "Atualizado em"
-      admin:
-        email: "Email"
-        password: "Senha"
-        password_confirmation: "Confirmação de Senha"
-        created_at: "Criado em"
-        updated_at: "Atualizado em"
-      subject:
-        description: "Descrição"
+  site: 
+    welcome_message: "Últimas Questões Cadastradas"
+

@@ -26,11 +26,13 @@
             <%= link_to "Time to Answer", root_path, class: "navbar-brand" %>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
+            <ul class="nav navbar-nav"></ul>
+            <%= form_with url: site_search_path, local: true, class:"navbar-form navbar-left", method: :get do |form| %>
+              <div class="form-group">
+                <%= form.text_field :term, class:"form-control", placeholder:"Digite aqui..." %>
+              </div>
+              <%= form.submit 'Pesquisar', class: "btn btn-default" %>
+            <% end %>
             <ul class="nav navbar-nav navbar-right">
               <% unless user_signed_in? %>
                 <li><%= link_to 'Entrar', user_session_path %></li>
@@ -60,25 +62,14 @@
       </nav>
 
       <div class="jumbotron">
-        <% if user_signed_in? %>
-          <h2>Usuário está logado</h2>
-          <p>Usuário: <%= current_user.email %></p>
+        <% unless params[:term] %>
+          <h3><%= t('site.welcome_message') %></h3>
         <% else %>
-          <h2>Usuário está deslogado</h2>
-        <% end  %>
-
-        <% if admin_signed_in? %>
-          <h2>Administrador está logado</h2>
-          <p>Administrador: <%= current_admin.email %> </p>
-        <% else %>
-          <h2>Admin está deslogado</h2>
-        <% end  %>
+          <h3><%= "Resultados para o termo: \"#{params[:term]}\"..." %></h3>
+        <% end %>
       </div>
 
       <%= yield %>
-
-
-
     </div>
     <footer>
       <% if notice %>
