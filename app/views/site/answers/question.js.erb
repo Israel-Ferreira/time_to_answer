@@ -1,0 +1,27 @@
+var element  =  document.getElementById("submit_<%= @answer.question.id %>")
+
+element.classList.remove("btn-default")
+element.classList.remove("btn-success")
+element.classList.remove("btn-danger")
+
+
+if(<%= @answer.correct? %>){
+  element.classList.add("btn-success")
+  displayNotification('Você acertou! \\o/', 'success')
+}else{
+  element.classList.add("btn-danger")
+  displayNotification('Você errou! :(', 'danger')
+}
+
+
+
+function displayNotification(message, type){
+  $.bootstrapGrowl(message, {
+    type: type, 
+    align: 'right', 
+    allow_dismiss: true, 
+    stackup_spacing: 10 
+  });
+}
+
+

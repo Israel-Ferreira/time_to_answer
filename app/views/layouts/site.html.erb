@@ -60,15 +60,7 @@
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
-
-      <div class="jumbotron">
-        <% unless params[:term] %>
-          <h3><%= t('site.welcome_message') %></h3>
-        <% else %>
-          <h3><%= "Resultados para o termo: \"#{params[:term]}\"..." %></h3>
-        <% end %>
-      </div>
-
+      
       <%= yield %>
     </div>
     <footer>
