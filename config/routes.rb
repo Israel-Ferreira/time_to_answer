@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :questions
   end
 
-  devise_for :admins
+  devise_for :admins, skip: [:registrations]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get '/inicio', to: 'site/welcome#index'

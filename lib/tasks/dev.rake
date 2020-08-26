@@ -79,6 +79,15 @@ namespace :dev do
     end
   end
 
+  desc 'Reseta os contadores dos assuntos'
+  task reset_subject_counter: :environment do
+    show_spinner("Resetando contador dos assuntos...", "Contadores Atualizados") do
+      Subject.find_each do |subject|
+        Subject.reset_counters(subject.id, :questions)
+      end
+    end
+  end
+
   private
 
   def show_spinner(start_msg, end_msg)

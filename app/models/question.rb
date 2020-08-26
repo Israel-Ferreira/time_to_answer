@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Question < ApplicationRecord
-  belongs_to :subject, inverse_of: :questions
+  belongs_to :subject, counter_cache: true, inverse_of: :questions
   paginates_per 5
 
   has_many :answers
