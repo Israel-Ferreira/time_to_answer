@@ -21,6 +21,8 @@ pt-BR:
         created_at: "Criado em"
         updated_at: "Atualizado em"
       user:
+        first_name: "Nome"
+        last_name: "Sobrenome"
         email: "Email"
         password: "Senha"
         password_confirmation: "Confirmação de Senha"
